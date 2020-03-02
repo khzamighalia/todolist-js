@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" >
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1> To do List</h1>
+    <div class="newtask" id="divnewtask">
+    <input type="text" id="newtask" placeholder="Add new task">
+    <button onclick="ajouter()"> Add </button>
+</div>
+</div>
+    <script >
+      function ajouter() {
+        var date= new Date();
+        var week=new Array("Dimanche","Lundi","Mardi","mercredi","Jeudi","Vendredi","Samedi");
+        var month=new Array("Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Decembre");
+          var task=document.getElementById("newtask").value;
+          var newDiv = document.createElement("div");
+         var newContent = document.createTextNode(task+"  --- "+week[date.getDay()]+" "+date.getDate()+" "+month[date.getMonth()]+" "+date.getUTCFullYear()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds());
+         var cancelcontent =document.createTextNode(" [Cancel]");
+          var checkbox = document.createElement('input'); 
+          var newP = document.createElement("label");
+          var supp = document.createElement("p");
+            checkbox.type = "checkbox"; 
+            checkbox.name = "name"; 
+            checkbox.value = "value"; 
+            checkbox.id = "checkbox"; 
+          newDiv.appendChild(checkbox);
+          newP.appendChild(newContent);
+          supp.appendChild(cancelcontent);
+          newDiv.appendChild(newP);
+          newDiv.appendChild(supp);
+          var currentDiv = document.getElementsByTagName("div")[1];
+          var parent=currentDiv.parentNode;
+          parent.insertBefore(newDiv, currentDiv);
+          document.getElementsByTagName("div")[1].setAttribute("class","tasks");
+          document.getElementsByTagName("p")[0].setAttribute("class","cancel");
+          document.getElementsByTagName("p")[0].setAttribute('onClick', "Supprimer(this)");
+        //   newDiv.setAttribute('for','checkbox');
+
+      }
+      function Supprimer(e){
+        e.parentElement.remove();
+      }
+    //   if(document.getElementById("tasks").value!=null){
+    //    window.onclick= function Selectionner(){
+    //         document.getElementById("tasks").style.color="red";
+    //         // document.getElementById("tasks").style.backgroundColor="black";
+    //         // var img = document.getElementsByClassName('tasks').createElement('img');
+    //         // img.src = 'check.png';
+    //         // document.getElementsByClassName('tasks').appendChild(img);
+
+    //     }}
+
+      
+    </script>
+    
+</body>
+</html>
